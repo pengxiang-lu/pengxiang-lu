@@ -23,6 +23,7 @@ const SITE_CONTENT = {
       code: "",
       video: "",
       image: "assets/vigiclaw-demo.gif",
+      coverVideo: "assets/vigiclaw-drawer.webm",
     },
     {
       id: "vla-memory",

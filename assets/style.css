@@ -1384,3 +1384,15 @@ html[lang="en"] .award-list h3 {
     padding: 12px 10px;
   }
 }
+
+.project-art.has-video {
+  height: auto;
+  aspect-ratio: 16 / 9;
+  background: #000;
+}
+.project-art.has-video > video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}

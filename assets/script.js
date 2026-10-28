@@ -48,7 +48,22 @@ function renderProjects(order = "featured") {
     article.className = "project";
     const art = document.createElement("div");
     art.className = "project-art";
-    if (safeUrl(p.image)) {
+    if (safeUrl(p.coverVideo)) {
+      art.classList.add("has-video");
+      const video = document.createElement("video");
+      video.muted = true;
+      video.defaultMuted = true;
+      video.autoplay = true;
+      video.loop = true;
+      video.playsInline = true;
+      video.controls = true;
+      video.preload = "metadata";
+      video.setAttribute("muted", "");
+      video.setAttribute("playsinline", "");
+      video.setAttribute("aria-label", p.name + " 项目封面视频");
+      video.src = safeUrl(p.coverVideo);
+      art.append(video);
+    } else if (safeUrl(p.image)) {
       art.classList.add("has-image");
       const img = document.createElement("img");
       img.src = safeUrl(p.image);

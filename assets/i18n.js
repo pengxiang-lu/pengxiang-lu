@@ -1,5 +1,6 @@
 // 双语文案。保留原始文本节点，让重复切换及动态项目排序可逆。
 const EN_TEXT = {
+  项目封面视频: " project cover video",
   机械臂配置: "Robot Arm Configuration",
   "真机平台采用自主搭建的三轴 SCARA 机械臂。以下配置依据机械臂开源仓库的系统说明与固件参数整理。":
     "The real-robot platform is a custom-built three-axis SCARA arm. The specifications below are based on the open-source repository documentation and firmware parameters.",
