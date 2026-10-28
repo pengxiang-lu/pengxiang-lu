@@ -50,7 +50,7 @@ const SITE_CONTENT = {
       noPaper: true,
       code: "https://github.com/pengxiang-lu/ch32v203-double-foc",
       video: "",
-      image: "",
+      image: "project/double-foc/attachments/board-front.png",
     },
     {
       id: "smart-car",

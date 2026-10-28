@@ -1,5 +1,84 @@
 // 双语文案。保留原始文本节点，让重复切换及动态项目排序可逆。
 const EN_TEXT = {
+  项目概述: "Project Overview",
+  "这是一个覆盖电路设计、PCB、底层驱动与控制算法的双路无刷电机驱动项目。以 CH32V203 为主控，将磁编码器反馈、电流采样、FOC 运算、PWM 输出和串口调试整合到同一套嵌入式系统中。":
+    "This dual brushless-motor drive project spans circuit design, PCB layout, peripheral drivers and control algorithms. A CH32V203 controller integrates magnetic encoder feedback, current sensing, FOC computation, PWM generation and serial debugging.",
+  "系统面向新西达 A2212 电机，支持两路电机独立使能，以及速度、位置、电流和多种串级闭环控制。仓库同时提供 MounRiver Studio 固件工程、硬件原理图与 PCB 文件。":
+    "The system targets A2212 brushless motors, with independently enabled motor channels and speed, position, current and cascaded closed-loop control modes. The repository includes the MounRiver Studio firmware project, schematics and PCB files.",
+  硬件设计: "Hardware Design",
+  "双路 FOC 驱动板正面": "Front of the dual FOC driver board",
+  "驱动板正面：双路功率级、采样与接线端。":
+    "Driver-board front: dual power stages, sensing and wiring connections.",
+  "双路 FOC 驱动板背面": "Back of the dual FOC driver board",
+  "驱动板背面：CH32V203 主控与左右电机接口。":
+    "Driver-board back: CH32V203 controller and left/right motor interfaces.",
+  模块: "Module",
+  方案与参数: "Design and parameters",
+  主控: "Controller",
+  "CH32V203；采用 RISC-V 核心及 CH32V20x 外设库。":
+    "CH32V203 with a RISC-V core and the CH32V20x peripheral library.",
+  位置反馈: "Position feedback",
+  "MT6701 磁编码器，固件按 14 位角度计数处理，一圈为 0–16383。":
+    "MT6701 magnetic encoders; firmware uses 14-bit angular counts, 0–16383 per revolution.",
+  栅极与功率级: "Gate and power stage",
+  "EG2133 栅极驱动搭配双 N 沟道 MOS 器件，每路使用 3 个双管封装。":
+    "EG2133 gate drivers with dual N-channel MOSFET packages; three dual packages per motor channel.",
+  电流采样: "Current sensing",
+  "固件配置 A/C 两相电流采样，分流电阻 0.01 Ω、放大增益 20。":
+    "Firmware configures A/C phase current sensing with 0.01 Ω shunts and a gain of 20.",
+  供电设计: "Power design",
+  "额定设计电压 12 V；README 标注输入电压范围为 4.5–17 V。":
+    "Nominal design voltage: 12 V. The README lists an input range of 4.5–17 V.",
+  "选择 EG2133 的设计出发点是使用普通定时器的 3PWM 信号驱动桥臂，减少对高级定时器互补输出和引脚数量的需求。双管封装降低了焊接数量，但紧凑布局也带来了后续硬件调试问题。":
+    "The EG2133 design uses ordinary-timer 3PWM signals to drive the bridges, reducing dependence on advanced-timer complementary outputs and pin count. Dual MOSFET packages reduce assembly effort, while the compact layout also introduced hardware debugging challenges.",
+  双电机磁编码器板设计: "Dual-motor magnetic encoder board design",
+  "A2212 双电机磁编码器板布局，图片来自项目仓库。":
+    "Magnetic encoder board layout for two A2212 motors, from the repository.",
+  控制模式与固件架构: "Control Modes and Firmware Architecture",
+  "固件提供开环、速度环、角度环、角度–速度串级环，以及电流环、速度–电流环、角度–电流环和角度–速度–电流三环。调制方式包括 SPWM、七段式 SVPWM 和五段式 SVPWM；当前配置选择速度–电流模式与七段式 SVPWM。":
+    "The firmware includes open-loop, speed, position, position–speed cascade, current, speed–current, position–current, and position–speed–current control. Modulation options include SPWM, seven-segment SVPWM and five-segment SVPWM. The inspected configuration selects speed–current control and seven-segment SVPWM.",
+  "driver_config.h 将 FOC 控制基准频率配置为 20 kHz，速度环为 2 kHz，角度环为 500 Hz。这些是固件配置值，并非本页面额外测量的性能结果。":
+    "driver_config.h sets the FOC control base frequency to 20 kHz, the speed loop to 2 kHz and the position loop to 500 Hz. These are firmware configuration values, rather than additional performance measurements.",
+  "外围驱动负责采样与输出，控制层完成角度与速度反馈、坐标变换和 PID 调节，协议层将串口目标值转换为对应模式下的电机指令。":
+    "Peripheral drivers handle sampling and output. The control layer processes angle/speed feedback, coordinate transforms and PID regulation, while the protocol layer converts serial targets into mode-specific motor commands.",
+  串口控制与数据可视化: "Serial Control and Telemetry",
+  "串口采用 460800 baud、8-N-1。控制帧固定为 6 字节：帧头 0xA5、左电机目标值 2 字节、右电机目标值 2 字节、1 字节校验和。目标值按有符号 16 位整数解释，高字节在前。":
+    "The serial link uses 460800 baud, 8-N-1. Each six-byte command contains header 0xA5, a two-byte left-motor target, a two-byte right-motor target and a one-byte checksum. Targets are signed 16-bit integers in big-endian order.",
+  "在速度模式中，上述指令表示左电机 +1000 RPM、右电机 −1000 RPM。校验和为前 5 字节求和后保留低 8 位；角度模式使用编码器计数，电流模式使用 mA，不能把不同模式的目标值混用。":
+    "In speed mode, the example commands +1000 RPM on the left and −1000 RPM on the right. The checksum is the low eight bits of the sum of the first five bytes. Position modes use encoder counts and current modes use mA, so target units depend on the selected mode.",
+  "状态回传为逗号分隔的 ASCII 数据，可按宏配置输出角度、速度、相电流、dq 电流和电池电压，配合 Vofa+ 观察调参过程。CAN 通信仍属于待扩展功能。":
+    "Telemetry is comma-separated ASCII, with configurable angle, speed, phase current, dq current and battery voltage fields. Vofa+ can visualize the tuning process. CAN communication remains a planned extension.",
+  "Vofa+ 调试波形示例": "Example Vofa+ debugging traces",
+  "仓库中的数据回传与波形可视化示例。": "Example telemetry visualization from the repository.",
+  工程迭代与调试: "Engineering Iteration and Debugging",
+  "仓库记录了数值运算、采样时序、PWM 更新和通信解析方面的排查与修正，目标是提升采样数据与控制链路的一致性。":
+    "The repository documents fixes to numerical operations, sampling order, PWM updates and protocol parsing, focusing on consistency across the sensing and control pipeline.",
+  "修正有符号圆限幅、dq 电流归一化和 PI 积分小数截断问题，降低数值误差与正负方向不一致的影响。":
+    "Corrected signed circular limiting, dq-current normalization and fractional PI integration to reduce numerical errors and directional asymmetry.",
+  "ADC 扫描完成后发布独立 DMA 快照，控制环使用已完成的采样结果；PWM 硬件同步仍待完善。":
+    "Publishes independent DMA snapshots after ADC scan completion, so the control loop uses completed samples; hardware-synchronized PWM sampling still needs refinement.",
+  "PWM 比较值改为直接更新并启用三相预装载，使整组三相输出在后续更新事件统一生效。":
+    "Updates PWM compare values directly and enables three-phase preload so the complete phase set takes effect together at a subsequent update event.",
+  "修复串口负目标值解析、三环角度模式目标更新、速度方向定义和低速滤波精度问题。":
+    "Fixed signed serial target parsing, target updates in triple-loop position mode, speed direction consistency and low-speed filtering precision.",
+  当前进展与后续优化: "Current Status and Next Steps",
+  "README 记录左路电机运行正常，右路在较高占空比下仍可能导致主控复位或卡死。当前可通过降低占空比或仅使用左路开展调试，不能据此认定全部双路控制模式已完成硬件验证。":
+    "The README reports normal operation on the left channel, while the right may reset or hang the controller at higher duty cycles. Lower duty limits or left-channel-only operation can support debugging; this does not establish validation of every dual-channel control mode.",
+  "后续重点是优化 PCB 布局、功率器件与栅极驱动选型，继续改善采样和 FOC 执行效率，并补齐经过硬件验证的电压、电流、散热和接线资料。保护功能通过宏配置启停，具体启用状态以固件版本为准。":
+    "Next steps include refining PCB layout and power/gate-driver choices, improving sampling and FOC execution efficiency, and documenting hardware-verified voltage/current limits, cooling and wiring. Protection features are compile-time configurable; their enabled state depends on the firmware version.",
+  "本页内容和实物图片整理自项目开源仓库；详细代码、配置与最新调试状态请参阅仓库。":
+    "This page summarizes the open-source repository and uses its hardware photographs. Refer to the repository for detailed code, configuration and the latest debugging status.",
+  "仿真视频：任务异常恢复": "Simulation Videos: Task Recovery",
+  "方块放入对应碗：异常检测与恢复": "Matching-Bowl Placement: Anomaly Detection and Recovery",
+  "仿真任务：将方块放入对应碗；视频展示执行中的异常检测与恢复过程。":
+    "Simulation task: placing blocks into the corresponding bowls, demonstrating anomaly detection and recovery during execution.",
+  "方块堆叠：异常检测与恢复": "Block Stacking: Anomaly Detection and Recovery",
+  "仿真任务：方块堆叠；视频展示堆叠过程中的异常检测与恢复。":
+    "Simulation task: block stacking, demonstrating anomaly detection and recovery during stacking.",
+  "SCARA 真机实验：堆叠方块": "SCARA Real-Robot Experiment: Block Stacking",
+  "真机任务：使用自制 SCARA 机械臂执行桌面方块堆叠。":
+    "Real-robot task: tabletop block stacking with the custom SCARA arm.",
+  "HARDWARE & MOTOR CONTROL": "HARDWARE & MOTOR CONTROL",
   "自制三轴 SCARA 机械臂实物照片": "Photograph of the custom three-axis SCARA robot arm",
   "真机平台：自制三轴 SCARA 机械臂，末端采用气泵吸取工具。":
     "Real-robot platform: a custom three-axis SCARA arm with a pneumatic suction end effector.",

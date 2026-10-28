@@ -7,10 +7,10 @@
     <meta name="theme-color" content="#111a2b" />
     <title>VigiClaw | Pengxiang Lu 卢鹏翔</title>
     <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="../../assets/style.css?v=20261028-arm-photo" />
-    <script src="../../assets/content.js?v=20261028-double-foc" defer></script>
+    <link rel="stylesheet" href="../../assets/style.css?v=20261028-hardware-videos" />
+    <script src="../../assets/content.js?v=20261028-hardware-videos" defer></script>
     <script src="../../assets/script.js?v=20261028-double-foc" defer></script>
-    <script src="../../assets/i18n.js?v=20261028-scholarships" defer></script>
+    <script src="../../assets/i18n.js?v=20261028-hardware-videos" defer></script>
   </head>
   <body>
     <a class="skip" href="#main">跳转至正文</a>
@@ -163,6 +163,37 @@
               <figcaption>论文 Fig. 5：8 项桌面操作任务与实验场景。</figcaption>
             </figure>
           </section>
+          <section id="simulation-videos">
+            <h2>仿真视频：任务异常恢复</h2>
+            <figure class="paper-figure experiment-video">
+              <h3>方块放入对应碗：异常检测与恢复</h3>
+              <video
+                controls
+                playsinline
+                preload="metadata"
+                poster="attachments/bowl-placement-recovery-poster.jpg"
+                aria-label="方块放入对应碗：异常检测与恢复"
+              >
+                <source src="attachments/bowl-placement-recovery.webm" type="video/webm" />
+              </video>
+              <figcaption>
+                仿真任务：将方块放入对应碗；视频展示执行中的异常检测与恢复过程。
+              </figcaption>
+            </figure>
+            <figure class="paper-figure experiment-video">
+              <h3>方块堆叠：异常检测与恢复</h3>
+              <video
+                controls
+                playsinline
+                preload="metadata"
+                poster="attachments/block-stacking-recovery-poster.jpg"
+                aria-label="方块堆叠：异常检测与恢复"
+              >
+                <source src="attachments/block-stacking-recovery.webm" type="video/webm" />
+              </video>
+              <figcaption>仿真任务：方块堆叠；视频展示堆叠过程中的异常检测与恢复。</figcaption>
+            </figure>
+          </section>
           <section id="recovery">
             <h2>异常检测与恢复</h2>
             <p>
@@ -264,6 +295,19 @@
                 </a>
               </div>
             </div>
+            <figure class="paper-figure experiment-video">
+              <h3>SCARA 真机实验：堆叠方块</h3>
+              <video
+                controls
+                playsinline
+                preload="metadata"
+                poster="attachments/scara-block-stacking-poster.jpg"
+                aria-label="SCARA 真机实验：堆叠方块"
+              >
+                <source src="attachments/scara-block-stacking.webm" type="video/webm" />
+              </video>
+              <figcaption>真机任务：使用自制 SCARA 机械臂执行桌面方块堆叠。</figcaption>
+            </figure>
             <figure class="paper-figure real-robot-figure">
               <img
                 src="../../assets/vigiclaw-demo.gif"
