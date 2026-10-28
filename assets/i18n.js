@@ -141,7 +141,8 @@ const EN_TEXT = {
   精选: "Featured",
   最近: "Recent",
   国家奖学金: "National Scholarship",
-  "2024–2025 学年 · 2025–2026 学年": "Academic years 2024–2025 and 2025–2026",
+  "2024–2025 学年": "Academic year 2024–2025",
+  "2025–2026 学年": "Academic year 2025–2026",
   "全国大学生智能汽车竞赛 · 全国一等奖":
     "National First Prize · National College Student Intelligent Car Competition",
   "第二十届 · 缩微光电组 · 主力队员":
