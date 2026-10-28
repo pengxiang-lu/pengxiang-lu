@@ -1,5 +1,31 @@
 // 双语文案。保留原始文本节点，让重复切换及动态项目排序可逆。
 const EN_TEXT = {
+  机械臂配置: "Robot Arm Configuration",
+  "真机平台采用自主搭建的三轴 SCARA 机械臂。以下配置依据机械臂开源仓库的系统说明与固件参数整理。":
+    "The real-robot platform is a custom-built three-axis SCARA arm. The specifications below are based on the open-source repository documentation and firmware parameters.",
+  组件: "Component",
+  配置说明: "Specification",
+  "机械臂开源仓库 ↗": "Robot arm repository ↗",
+  "固件参数文件 ↗": "Firmware parameters ↗",
+  机械臂配置表: "Robot arm specifications",
+  机械结构: "Mechanical structure",
+  "三轴 SCARA：平面双连杆运动与 Z 轴升降；主臂、副臂长度均为 177 mm。":
+    "Three-axis SCARA with planar two-link motion and vertical Z-axis travel; both arm links are 177 mm long.",
+  下位机控制: "Embedded controller",
+  "STM32F103C8，基于 STM32F10x 标准外设库；负责运动学解算、串口协议及步进电机和末端工具控制。":
+    "STM32F103C8 with the STM32F10x Standard Peripheral Library, handling kinematics, serial commands, stepper motors and the end effector.",
+  运动参数: "Motion parameters",
+  "固件配置为 1.8° 步进角、32 细分，Z 轴丝杆导程为 2 mm。":
+    "Firmware settings: 1.8° step angle, 32 microsteps, and a 2 mm Z-axis screw lead.",
+  末端执行器: "End effector",
+  "气泵吸取与释放，用于桌面物块取放；固件当前选择 AIRPUMP 工具配置。":
+    "Pneumatic suction and release for tabletop pick-and-place; the firmware selects the AIRPUMP tool configuration.",
+  上位机: "Host interface",
+  "Qt Widgets / C++ 桌面程序，使用 Qt SerialPort，支持串口连接、末端坐标与工具控制。":
+    "Qt Widgets / C++ desktop application using Qt SerialPort for serial connection, end-effector coordinates and tool control.",
+  通信接口: "Communication",
+  "串口通信：115200 baud、8 数据位、无校验、1 停止位、无流控。":
+    "Serial connection: 115200 baud, 8 data bits, no parity, 1 stop bit, and no flow control.",
   真机测试: "Real-Robot Testing",
   "将 VigiClaw 框架部署到自制机械臂平台，展示自然语言指令驱动的桌面方块操作。演示包含上位机交互与机械臂执行过程，呈现从任务指令到真实动作的系统联调。":
     "VigiClaw is deployed on a custom robot arm to demonstrate language-guided tabletop block manipulation. The demo shows host-side interaction and robot execution, illustrating system integration from task instructions to physical actions.",

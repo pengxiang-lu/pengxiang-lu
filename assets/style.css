@@ -1349,3 +1349,38 @@ html[lang="en"] .award-list h3 {
   object-fit: contain;
   background: var(--panel);
 }
+
+.arm-configuration {
+  margin: 28px 0 32px;
+}
+.arm-configuration h3 {
+  font-size: 23px;
+  margin: 24px 0 12px;
+  color: var(--text);
+}
+.hardware-table {
+  table-layout: fixed;
+}
+.hardware-table th:first-child {
+  width: 175px;
+}
+.hardware-table td {
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+.hardware-sources {
+  margin-top: 18px;
+}
+@media (max-width: 580px) {
+  .hardware-table {
+    min-width: 0;
+    font-size: 14px;
+  }
+  .hardware-table th:first-child {
+    width: 95px;
+  }
+  .hardware-table th,
+  .hardware-table td {
+    padding: 12px 10px;
+  }
+}

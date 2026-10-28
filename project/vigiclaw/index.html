@@ -189,6 +189,71 @@
               <span>自制机械臂</span>
               <span>桌面方块操作</span>
             </div>
+            <div id="robot-arm-configuration" class="arm-configuration">
+              <h3>机械臂配置</h3>
+              <p>
+                真机平台采用自主搭建的三轴 SCARA
+                机械臂。以下配置依据机械臂开源仓库的系统说明与固件参数整理。
+              </p>
+              <div class="results-scroll" role="region" tabindex="0" aria-label="机械臂配置表">
+                <table class="results-table hardware-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">组件</th>
+                      <th scope="col">配置说明</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">机械结构</th>
+                      <td>三轴 SCARA：平面双连杆运动与 Z 轴升降；主臂、副臂长度均为 177 mm。</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">下位机控制</th>
+                      <td>
+                        STM32F103C8，基于 STM32F10x
+                        标准外设库；负责运动学解算、串口协议及步进电机和末端工具控制。
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">运动参数</th>
+                      <td>固件配置为 1.8° 步进角、32 细分，Z 轴丝杆导程为 2 mm。</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">末端执行器</th>
+                      <td>气泵吸取与释放，用于桌面物块取放；固件当前选择 AIRPUMP 工具配置。</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">上位机</th>
+                      <td>
+                        Qt Widgets / C++ 桌面程序，使用 Qt
+                        SerialPort，支持串口连接、末端坐标与工具控制。
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">通信接口</th>
+                      <td>串口通信：115200 baud、8 数据位、无校验、1 停止位、无流控。</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="resource-links hardware-sources">
+                <a
+                  href="https://github.com/pengxiang-lu/scara-robot-arm"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  机械臂开源仓库 ↗
+                </a>
+                <a
+                  href="https://github.com/pengxiang-lu/scara-robot-arm/blob/main/%E4%B8%8B%E4%BD%8D%E6%9C%BA%E4%BB%A3%E7%A0%81/Software/driver_config.h"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  固件参数文件 ↗
+                </a>
+              </div>
+            </div>
             <figure class="paper-figure real-robot-figure">
               <img
                 src="../../assets/vigiclaw-demo.gif"
