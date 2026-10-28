@@ -2,7 +2,7 @@
 const EN_TEXT = {
   个人介绍: "Introduction",
   科研与工程经历: "Research and Engineering Experience",
-  学业表现: "Academic Profile",
+  本科期间学业表现: "Undergraduate Academic Performance",
   华南理工大学校徽: "South China University of Technology emblem",
   南京大学校徽: "Nanjing University emblem",
   "南京大学 · 拟录取": "Nanjing University · Preliminary admission",
