@@ -171,7 +171,6 @@ h1 span {
   padding: 9px;
   border: 1px solid #79b0ff4a;
   border-radius: 18px;
-  transform: rotate(3deg);
   background: var(--panel);
 }
 .portrait {
