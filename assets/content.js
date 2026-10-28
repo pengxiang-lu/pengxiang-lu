@@ -1,6 +1,6 @@
 // 在这里添加论文、项目代码、封面与视频路径。空字符串会显示“待补充”，不会生成失效链接。
 const SITE_CONTENT = {
-  paper: { url: "", code: "" },
+  paper: { url: "project/vigiclaw/attachments/vigiclaw-paper.pdf", code: "" },
   projects: [
     {
       id: "vigiclaw",
@@ -19,10 +19,10 @@ const SITE_CONTENT = {
         "负责框架设计、任务规划与执行闭环，以及论文撰写；完成仿真实验与自制机械臂验证。",
         "论文被 IEEE-CYBER 录用，入围 Best Poster Award。",
       ],
-      paper: "",
+      paper: "project/vigiclaw/attachments/vigiclaw-paper.pdf",
       code: "",
       video: "",
-      image: "",
+      image: "project/vigiclaw/attachments/workflow.png",
     },
     {
       id: "vla-memory",

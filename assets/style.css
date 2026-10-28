@@ -1105,3 +1105,95 @@ html[lang="en"] .award-list h3 {
     letter-spacing: 0.8px;
   }
 }
+
+/* Show the full workflow diagram instead of cropping its portrait layout. */
+.publication-art.workflow-cover {
+  padding: 10px;
+  background: #fff;
+}
+.workflow-cover img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 350px;
+  object-fit: contain;
+}
+.project-art.has-image {
+  background: #fff;
+  height: 220px;
+}
+.project-art.has-image > img {
+  object-fit: contain;
+  padding: 8px;
+}
+.detail-art.has-image {
+  height: auto;
+  background: #fff;
+  padding: 18px;
+}
+.detail-art.has-image img {
+  display: block;
+  width: min(100%, 600px);
+  height: auto;
+  max-height: 760px;
+  margin: auto;
+  object-fit: contain;
+}
+/* Larger, upright profile photographs. */
+.portrait-wrap {
+  flex-shrink: 0;
+}
+.portrait {
+  width: 220px;
+  height: 305px;
+}
+.about-profile {
+  grid-template-columns: 1fr 220px;
+}
+.about-profile img {
+  width: 200px;
+}
+@media (max-width: 800px) and (min-width: 581px) {
+  .portrait {
+    width: 180px;
+    height: 250px;
+  }
+  .about-profile {
+    grid-template-columns: 1fr 190px;
+  }
+  .about-profile img {
+    width: 175px;
+  }
+}
+@media (max-width: 580px) {
+  .portrait {
+    width: 110px;
+    height: 155px;
+  }
+  .about-profile {
+    grid-template-columns: 1fr 115px;
+  }
+  .about-profile img {
+    width: 110px;
+  }
+  .detail-art.has-image {
+    padding: 10px;
+  }
+}
+@media (max-width: 380px) {
+  .hero {
+    flex-direction: column-reverse;
+    gap: 30px;
+  }
+  .hero-copy {
+    width: 100%;
+  }
+  .portrait-wrap {
+    align-self: center;
+    margin-top: 0;
+  }
+  .portrait {
+    width: 135px;
+    height: 190px;
+  }
+}

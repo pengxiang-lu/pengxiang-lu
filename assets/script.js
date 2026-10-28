@@ -46,6 +46,7 @@ function renderProjects(order = "featured") {
     const art = document.createElement("div");
     art.className = "project-art";
     if (safeUrl(p.image)) {
+      art.classList.add("has-image");
       const img = document.createElement("img");
       img.src = safeUrl(p.image);
       img.alt = p.name + " 项目封面";
@@ -89,6 +90,7 @@ function renderProjectPage() {
   if (!p) return;
   const art = $("#detail-art");
   if (safeUrl(p.image)) {
+    art.classList.add("has-image");
     const img = document.createElement("img");
     img.src = safeUrl(p.image);
     img.alt = p.name + " 项目封面";

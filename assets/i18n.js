@@ -1,5 +1,6 @@
 // 双语文案。保留原始文本节点，让重复切换及动态项目排序可逆。
 const EN_TEXT = {
+  "VigiClaw 系统工作流程图": "VigiClaw system workflow",
   跳转至正文: "Skip to content",
   "让感知、推理与行动，连接真实世界。":
     "Connecting perception, reasoning and action to the real world.",
