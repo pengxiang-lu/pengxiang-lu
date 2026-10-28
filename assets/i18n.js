@@ -1,5 +1,32 @@
 // 双语文案。保留原始文本节点，让重复切换及动态项目排序可逆。
 const EN_TEXT = {
+  个人介绍: "Introduction",
+  科研与工程经历: "Research and Engineering Experience",
+  学业表现: "Academic Profile",
+  华南理工大学校徽: "South China University of Technology emblem",
+  南京大学校徽: "Nanjing University emblem",
+  "南京大学 · 拟录取": "Nanjing University · Preliminary admission",
+  "2026.09 · 获得拟录取资格": "Sep 2026 · Preliminary admission offer",
+  "人工智能专业 · 智能科学与技术方向":
+    "Artificial Intelligence · Intelligent Science and Technology",
+  "VigiClaw · 机器人自主操作": "VigiClaw · Autonomous Robot Manipulation",
+  "第一作者 · 2026.02–2026.05": "First author · Feb–May 2026",
+  "设计基于 OpenClaw 的机器人自主操作框架，融合视觉感知、DMP 示教与动作触发式状态验证。负责框架设计、规划–执行闭环与论文撰写；论文被 IEEE-CYBER 录用，并入围 Best Poster Award。":
+    "Designed an OpenClaw-based autonomous manipulation framework integrating visual perception, DMP demonstrations and action-triggered state verification. Responsible for the framework, planning–execution loop and paper writing. The paper was accepted at IEEE-CYBER and selected as a Best Poster Award finalist.",
+  "短记忆 VLA 模型研究": "Short-Term Memory in VLA Models",
+  "项目成员 · 2026.01–2026.07": "Project member · Jan–Jul 2026",
+  "面向长时序双臂操作参与 VLA 记忆能力研究，负责仿真框架调研选型、数据采集与仿真实验，参与构建历史事件驱动的评测流程。论文初稿投稿至 ICRA。":
+    "Contributed to VLA memory research for long-horizon bimanual manipulation, including simulation framework evaluation, data collection, experiments and history-driven evaluation pipelines. The manuscript was submitted to ICRA.",
+  "CH32V203 DOUBLE-FOC · 电机驱动": "CH32V203 DOUBLE-FOC · Motor Drive",
+  "开源项目 · 嵌入式与硬件开发": "Open-source project · Embedded Systems and Hardware",
+  "围绕双路无刷电机驱动，开展电路与 PCB 设计、磁编码器反馈、电流采样以及 FOC 闭环控制固件开发，结合串口数据回传进行系统联调。":
+    "Developed hardware and firmware for a dual brushless-motor drive, covering circuits and PCB design, magnetic encoder feedback, current sensing and FOC control, with serial telemetry for system debugging.",
+  全国大学生智能汽车竞赛: "National College Student Intelligent Car Competition",
+  "主力队员 · 2024.12–2025.08": "Core team member · Dec 2024–Aug 2025",
+  "负责无刷电机驱动硬件与控制算法，实现 FOC 和六步换向，参与视觉循迹与转向控制联调。获第二十届全国大学生智能汽车竞赛缩微光电组全国一等奖。":
+    "Developed brushless motor drive hardware, FOC and six-step commutation algorithms, and integrated visual line following and steering control. Won the National First Prize in the miniature optoelectronic category of the 20th National College Student Intelligent Car Competition.",
+  "项目详情 →": "Project details →",
+  返回首页: "Back to homepage",
   项目概述: "Project Overview",
   "这是一个覆盖电路设计、PCB、底层驱动与控制算法的双路无刷电机驱动项目。以 CH32V203 为主控，将磁编码器反馈、电流采样、FOC 运算、PWM 输出和串口调试整合到同一套嵌入式系统中。":
     "This dual brushless-motor drive project spans circuit design, PCB layout, peripheral drivers and control algorithms. A CH32V203 controller integrates magnetic encoder feedback, current sensing, FOC computation, PWM generation and serial debugging.",

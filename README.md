@@ -65,3 +65,9 @@ code: "https://github.com/你的用户名/仓库"
 视觉主题采用蓝色，可切换深浅模式；主色与背景变量位于 assets/style.css。
 
 项目列表中的 Memory for VLA 已替换为 CH32V203 DOUBLE-FOC。内容来源：https://github.com/pengxiang-lu/ch32v203-double-foc 。旧 vla-memory 地址保留跳转。
+
+## About 页
+
+学业数据（GPA、专业排名、CET-6）与技能标签集中在 about/index.html。教育经历使用学校官网校徽：
+- 华南理工大学：https://www.scut.edu.cn/new/9017/list.htm
+- 南京大学：https://dawww.nju.edu.cn/info/3061/69011.htm

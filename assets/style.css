@@ -1456,3 +1456,96 @@ html[lang="en"] .award-list h3 {
     padding: 14px;
   }
 }
+
+.school-row {
+  display: grid;
+  grid-template-columns: 100px minmax(0, 1fr);
+  gap: 24px;
+  align-items: center;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--line);
+}
+.school-logo {
+  width: 94px;
+  height: 94px;
+  padding: 8px;
+  border-radius: 14px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+.school-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.school-copy h3 {
+  margin: 0 0 6px;
+  font-size: 21px;
+  color: var(--text);
+}
+.school-copy p {
+  margin: 4px 0;
+}
+.school-copy time {
+  font-size: 14px;
+  color: var(--accent);
+}
+.academic-profile {
+  margin-top: 26px;
+}
+.academic-profile h3 {
+  font-size: 20px;
+  color: var(--text);
+}
+.about-content .stats {
+  margin-bottom: 0;
+}
+.experience-entry {
+  padding: 22px 0;
+  border-bottom: 1px solid var(--line);
+}
+.experience-entry:first-of-type {
+  padding-top: 0;
+}
+.experience-entry h3 {
+  font-size: 21px;
+  color: var(--text);
+}
+.experience-entry .experience-meta {
+  color: var(--accent);
+  font-size: 14px;
+  margin: 6px 0 10px;
+}
+.about-content .skills {
+  margin: 12px 0 22px;
+}
+.skill-details {
+  margin-top: 20px;
+}
+@media (max-width: 580px) {
+  .school-row {
+    grid-template-columns: 64px minmax(0, 1fr);
+    gap: 15px;
+    align-items: start;
+  }
+  .school-logo {
+    width: 64px;
+    height: 64px;
+    padding: 6px;
+    border-radius: 10px;
+  }
+  .school-copy h3,
+  .experience-entry h3 {
+    font-size: 18px;
+  }
+  .school-copy p {
+    font-size: 16px;
+  }
+  .school-copy time {
+    font-size: 13px;
+  }
+}
