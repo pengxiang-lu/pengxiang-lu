@@ -1,5 +1,16 @@
 // 双语文案。保留原始文本节点，让重复切换及动态项目排序可逆。
 const EN_TEXT = {
+  真机测试: "Real-Robot Testing",
+  "将 VigiClaw 框架部署到自制机械臂平台，展示自然语言指令驱动的桌面方块操作。演示包含上位机交互与机械臂执行过程，呈现从任务指令到真实动作的系统联调。":
+    "VigiClaw is deployed on a custom robot arm to demonstrate language-guided tabletop block manipulation. The demo shows host-side interaction and robot execution, illustrating system integration from task instructions to physical actions.",
+  "真机测试演示：自然语言交互与自制机械臂桌面操作。":
+    "Real-robot demo: natural-language interaction and tabletop manipulation with a custom robot arm.",
+  "论文中的定量成功率来自 ManiSkill 仿真实验；真机演示用于展示硬件部署与执行流程。多视角感知和更灵活的恢复策略仍是后续研究方向。":
+    "The quantitative success rates in the paper come from ManiSkill simulation experiments. The real-robot demo illustrates hardware deployment and execution. Multi-view perception and more flexible recovery strategies remain future directions.",
+  自然语言指令: "Natural-language instructions",
+  自制机械臂: "Custom robot arm",
+  桌面方块操作: "Tabletop block manipulation",
+  "VigiClaw 真机测试动图": "VigiClaw real-robot testing animation",
   研究概览: "Overview",
   研究问题: "Problem",
   系统框架: "System Overview",

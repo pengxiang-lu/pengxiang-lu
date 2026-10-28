@@ -1340,3 +1340,12 @@ html[lang="en"] .award-list h3 {
     padding: 11px 12px;
   }
 }
+
+.real-robot-tags {
+  margin: 20px 0;
+}
+.real-robot-figure img {
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+  background: var(--panel);
+}
