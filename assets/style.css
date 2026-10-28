@@ -1119,12 +1119,13 @@ html[lang="en"] .award-list h3 {
   object-fit: contain;
 }
 .project-art.has-image {
-  background: #fff;
-  height: 220px;
+  background: var(--panel);
+  height: auto;
+  aspect-ratio: 16 / 9;
 }
 .project-art.has-image > img {
   object-fit: contain;
-  padding: 8px;
+  padding: 0;
 }
 .detail-art.has-image {
   height: auto;

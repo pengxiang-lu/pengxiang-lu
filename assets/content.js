@@ -22,7 +22,7 @@ const SITE_CONTENT = {
       paper: "project/vigiclaw/attachments/vigiclaw-paper.pdf",
       code: "",
       video: "",
-      image: "project/vigiclaw/attachments/workflow.png",
+      image: "assets/vigiclaw-demo.gif",
     },
     {
       id: "vla-memory",
@@ -64,7 +64,7 @@ const SITE_CONTENT = {
       paper: "",
       code: "",
       video: "",
-      image: "",
+      image: "assets/smart-car-demo.gif",
     },
   ],
 };
