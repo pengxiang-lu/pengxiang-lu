@@ -1,0 +1,77 @@
+// 项目内容与媒体路径。空路径显示待补充；date 留空表示未填写项目日期。
+const SITE_CONTENT = {
+  paper: {
+    url: "project/vigiclaw/attachments/vigiclaw-paper.pdf",
+    code: "",
+  },
+  projects: [
+    {
+      id: "vigiclaw",
+      name: "VigiClaw",
+      subtitle: "面向长周期任务的机器人自主操作",
+      date: "2026-05",
+      period: "2026.02 – 2026.05",
+      role: "第一作者",
+      kind: "robot",
+      tags: ["OpenClaw", "YOLO", "DMP", "状态验证"],
+      description:
+        "将任务规划、视觉感知与动作执行连接成闭环，在原子动作执行后校验状态，应对长周期操作中的外部干扰。",
+      details: [
+        "提出并设计基于 OpenClaw 的机器人操作框架，融合 YOLO 视觉识别与 DMP 示教。",
+        "通过动作触发式视觉状态验证，实现轻量化异常检测。",
+        "负责框架设计、任务规划与执行闭环，以及论文撰写；完成仿真实验与自制机械臂验证。",
+        "论文被 IEEE-CYBER 录用，入围 Best Poster Award。",
+      ],
+      paper: "project/vigiclaw/attachments/vigiclaw-paper.pdf",
+      code: "",
+      video: "",
+      image: "assets/vigiclaw-drawer.gif",
+    },
+    {
+      id: "double-foc",
+      name: "CH32V203 DOUBLE-FOC",
+      subtitle: "双路磁编码器 FOC 电机驱动",
+      date: "",
+      period: "硬件设计与嵌入式固件",
+      role: "开源项目",
+      kind: "foc",
+      tags: ["CH32V203", "FOC", "MT6701", "PCB"],
+      description:
+        "基于 CH32V203 的双路有感 FOC 驱动，集成磁编码器反馈、电流采样和多种闭环控制模式，提供硬件 PCB 与嵌入式固件。",
+      details: [
+        "以 CH32V203 为主控，使用 MT6701 磁编码器反馈，支持左右两路电机独立使能。",
+        "固件提供速度、角度、电流及其组合闭环控制，支持 SPWM、七段式 SVPWM 和五段式 SVPWM。",
+        "硬件采用 EG2133 栅极驱动与双 N 沟道 MOS 器件，仓库提供原理图、PCB 和编码器板资料。",
+        "通过 460800 baud 的 USART 接收双电机目标值，支持数据回传，可配合 Vofa+ 观察控制状态。",
+        "支持电池电压检测、欠压保护、堵转保护和磁编码器错误保护。",
+        "当前调试状态：仓库记录左路运行正常；右路在较高占空比下可能导致控制器复位或卡死，硬件仍待优化。各控制模式的板上验证状态以仓库说明为准。",
+      ],
+      paper: "",
+      noPaper: true,
+      code: "https://github.com/pengxiang-lu/ch32v203-double-foc",
+      video: "",
+      image: "project/double-foc/attachments/board-front.png",
+    },
+    {
+      id: "smart-car",
+      name: "Intelligent Racing",
+      subtitle: "全国大学生智能汽车竞赛 · 全国一等奖",
+      date: "2025-08",
+      period: "2024.12 – 2025.08",
+      role: "主力队员",
+      kind: "car",
+      tags: ["Infineon TRAVEO", "FOC", "嵌入式控制"],
+      description:
+        "基于 Infineon TRAVEO MCU 开发智能车控制系统，负责无刷电机驱动与控制算法，实现高速稳定运行。",
+      details: [
+        "负责无刷电机驱动硬件开发与电机控制方案设计。",
+        "开发 FOC 及六步换向算法，实现电机转矩与速度控制。",
+        "参与视觉循迹与转向控制算法联调，获得缩微光电组全国一等奖。",
+      ],
+      paper: "",
+      code: "",
+      video: "",
+      image: "assets/smart-car-demo.gif",
+    },
+  ],
+};

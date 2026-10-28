@@ -1,39 +1,73 @@
-# 卢鹏翔 · 个人学术主页
+# Pengxiang Lu | 卢鹏翔
 
-无需安装依赖，纯 HTML / CSS / JavaScript，兼容 GitHub Pages。内容来自提供的简历及时间线。论文仅使用已知名称 VigiClaw；未编造完整英文标题或作者名单。原始简历作为 assets/cv.pdf 提供下载。
+个人学术主页。采用与 tofour.github.io 相同形式的多页面静态目录：根目录首页、about 介绍页、project 项目详情页及附件目录。内容、样式和资源属于本个人主页。
 
-## 本地查看
-直接用浏览器打开 index.html，或在本目录运行 `python3 -m http.server 8000` 后访问 http://localhost:8000。
+## 目录
 
-## 发布到 GitHub Pages
-1. 创建公开仓库 `pengxiang-lu.github.io`（与实际 GitHub 用户名一致）。
-2. 上传本目录内的所有文件，保持 index.html 在仓库根目录；不要多套一层文件夹。
-3. Settings → Pages → Deploy from a branch → main → / (root) → Save。
-4. 部署后访问 https://pengxiang-lu.github.io/ 。
-如已有此仓库，先备份现有内容再合并。当前交付未上传或发布到 GitHub。
-
-## 添加论文、视频、图片
-所有媒体链接集中在 `content.js`，无需修改页面结构。空字符串显示待补充；添加路径后自动启用。
-
-例如，把文件放入 assets/ 后修改：
-```js
-paper: { url: "assets/vigiclaw.pdf", code: "https://github.com/你的用户名/仓库" }
+```text
+pengxiang-homepage/
+├── index.html                 # 首页
+├── about/
+│   └── index.html             # 完整个人介绍
+├── project/
+│   ├── vigiclaw/
+│   │   ├── index.html         # VigiClaw 项目详情
+│   │   └── attachments/       # 论文、图片、视频等项目附件
+│   ├── double-foc/
+│   │   ├── index.html
+│   │   └── attachments/
+│   └── smart-car/
+│       ├── index.html
+│       └── attachments/
+├── assets/
+│   ├── avatar.jpg             # 个人照片
+│   ├── cv.pdf                 # 简历
+│   ├── favicon.svg
+│   ├── style.css              # 共享样式
+│   ├── content.js             # 项目内容和媒体路径
+│   └── script.js              # 主题、排序和项目内容加载
+├── .nojekyll
+└── README.md
 ```
-在对应项目对象中修改：
+
+## 添加论文、视频和封面
+
+以 VigiClaw 为例，将文件放到 `project/vigiclaw/attachments/`，再编辑 `assets/content.js`：
+
 ```js
-video: "assets/vigiclaw.mp4", // 也支持外部视频页面链接，作为新标签页打开
-image: "assets/vigiclaw-cover.jpg",
-paper: "assets/vigiclaw.pdf",
+// 首页论文链接
+paper: { url: "project/vigiclaw/attachments/paper.pdf", code: "https://github.com/你的用户名/仓库" }
+// 对应项目的媒体字段
+paper: "project/vigiclaw/attachments/paper.pdf",
+video: "project/vigiclaw/attachments/demo.mp4",
+image: "project/vigiclaw/attachments/cover.jpg",
 code: "https://github.com/你的用户名/仓库"
 ```
-本地 mp4 / webm / ogg 文件会在项目弹窗中显示视频播放器；Bilibili / YouTube 等页面链接会显示 Video 按钮。视频不会自动播放。
 
-建议封面比例约 16:9。当前封面为示意图，不代表项目实拍。头像来自简历，可替换 assets/portrait.jpg。添加真实实验图片后，将对应 image 字段设为文件路径。
+所有媒体路径都相对于网站根目录，在首页和项目子页面通用。空路径显示待补充；mp4/webm/ogg 使用播放器，外部视频页面链接显示按钮。共享资源放 assets/，项目专属资源放对应 attachments/。
 
-## 修改内容
-- 个人介绍、教育时间线、论文展示、荣誉、邮箱与 GitHub 链接：index.html。
-- 项目文案、详情、媒体路径和排序日期：content.js。
-- 主题、字体、尺寸：style.css。
-- 简历下载：替换 assets/cv.pdf。该 PDF 为原始文件，含手机号和出生年月；发布前可按需换成公开版。
+个人信息和首页时间线编辑 index.html；完整介绍编辑 about/index.html；项目文案编辑 assets/content.js，项目页的静态标题、概述等编辑对应 project/项目名/index.html。
 
-功能：深浅主题切换及记忆、响应式布局、精选/最近项目排序、可用 Escape 关闭的项目详情弹窗、原始简历下载、锚点导航。
+## 本地查看
+
+在本目录运行 `python3 -m http.server 8000`，打开 http://localhost:8000/ 。本地服务器支持 `about/` 与 `project/项目名/` 形式的目录网址。
+
+## GitHub Pages
+
+上传本目录内容至仓库根目录。Settings → Pages → Deploy from a branch → main → / (root) → Save。
+
+目前仓库为 pengxiang-lu/pengxiang-lu，启用后网站地址为 https://pengxiang-lu.github.io/pengxiang-lu/ 。相对链接同时兼容该子路径和独立用户主页根路径。
+
+## 中英文切换
+
+所有页面右上角均有 EN / 中文 按钮，选择保存在浏览器中，跨页面生效。双语文案集中在 `assets/i18n.js`，新增中文内容后在 EN_TEXT 中加入对应翻译。简历 PDF 保持原文件，英文界面明确标为 Chinese PDF。
+
+视觉主题采用蓝色，可切换深浅模式；主色与背景变量位于 assets/style.css。
+
+项目列表中的 Memory for VLA 已替换为 CH32V203 DOUBLE-FOC。内容来源：https://github.com/pengxiang-lu/ch32v203-double-foc 。旧 vla-memory 地址保留跳转。
+
+## About 页
+
+学业数据（GPA、专业排名、CET-6）与技能标签集中在 about/index.html。教育经历使用学校官网校徽：
+- 华南理工大学：https://www.scut.edu.cn/new/9017/list.htm
+- 南京大学：https://dawww.nju.edu.cn/info/3061/69011.htm
