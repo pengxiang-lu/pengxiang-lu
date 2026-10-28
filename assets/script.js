@@ -28,7 +28,10 @@ function resource(parent, text, url) {
 }
 if ($("#paper-links")) {
   resource($("#paper-links"), "Paper", SITE_CONTENT.paper.url);
-  resource($("#paper-links"), "Code", SITE_CONTENT.paper.code);
+  const overview = document.createElement("a");
+  overview.textContent = "Overview ↗";
+  overview.href = new URL("project/vigiclaw/", SITE_ROOT).href;
+  $("#paper-links").append(overview);
 }
 const diagrams = {
   robot: `<svg viewBox="0 0 320 170" aria-hidden="true"><g fill="none" stroke="#79b0ff" stroke-width="1" opacity=".15"><path d="M0 130H320M0 100H320M0 70H320M40 0V170M100 0V170M160 0V170M220 0V170M280 0V170"/></g><g fill="none" stroke="#abcfff" stroke-linecap="round" stroke-linejoin="round"><path d="M101 143h113M155 139v-28l-37-33 43-40 44 25" stroke-width="12"/><path d="m205 63 20-4m-20 4 4 20" stroke-width="5"/><circle cx="155" cy="111" r="9" fill="#27466c" stroke-width="3"/><circle cx="118" cy="78" r="9" fill="#27466c" stroke-width="3"/><circle cx="161" cy="38" r="8" fill="#27466c" stroke-width="3"/><rect x="231" y="115" width="26" height="26" rx="3" stroke-dasharray="4 4"/><path d="m234 99 8 6 16-20" stroke="#79b0ff" stroke-width="3"/></g><text x="20" y="24" fill="#8faed6" font-size="8" letter-spacing="2">ACTION → VERIFY</text></svg>`,

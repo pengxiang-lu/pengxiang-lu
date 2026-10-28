@@ -1197,3 +1197,145 @@ html[lang="en"] .award-list h3 {
     height: 190px;
   }
 }
+
+/* Paper overview, shared with the main blue theme. */
+.paper-header {
+  text-align: center;
+  margin: 20px auto 55px;
+  max-width: 940px;
+}
+.paper-header .eyebrow {
+  justify-content: center;
+}
+.paper-header h1 {
+  font-size: clamp(28px, 3.2vw, 40px);
+  line-height: 1.35;
+  letter-spacing: -0.7px;
+  margin: 22px 0;
+  text-wrap: balance;
+}
+.overview-authors {
+  font-size: 18px;
+  color: var(--text);
+  line-height: 2;
+}
+.affiliation {
+  font-size: 14px;
+  color: var(--muted);
+  margin: 7px 0;
+  line-height: 1.8;
+}
+.overview-resources {
+  justify-content: center;
+  margin-top: 24px;
+}
+.paper-figure {
+  margin: 28px 0;
+}
+.paper-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+}
+.workflow-figure img {
+  width: min(100%, 520px);
+  margin: auto;
+  padding: 10px;
+}
+.paper-figure figcaption,
+.detail-body .results-note {
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--muted);
+  margin-top: 12px;
+}
+.result-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 25px 0;
+}
+.result-metrics > div {
+  padding: 22px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+.result-metrics b {
+  display: block;
+  font-size: 36px;
+  line-height: 1.4;
+  color: var(--accent);
+}
+.result-metrics span {
+  font-size: 14px;
+  line-height: 1.6;
+  display: block;
+  margin-top: 8px;
+}
+.results-scroll {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+.results-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 16px;
+  line-height: 1.8;
+}
+.results-table td,
+.results-table th {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--line);
+  text-align: center;
+}
+.results-table th:first-child {
+  text-align: left;
+}
+.results-table th {
+  font-weight: 550;
+}
+.results-table thead,
+.results-table .highlight {
+  background: var(--panel2);
+  color: var(--text);
+}
+.results-table tr:last-child > * {
+  border-bottom: 0;
+}
+@media (max-width: 580px) {
+  .paper-header {
+    margin-top: 15px;
+    margin-bottom: 38px;
+  }
+  .overview-authors {
+    font-size: 16px;
+  }
+  .affiliation {
+    font-size: 13px;
+  }
+  .result-metrics {
+    gap: 8px;
+  }
+  .result-metrics > div {
+    padding: 13px 10px;
+  }
+  .result-metrics b {
+    font-size: 27px;
+  }
+  .result-metrics span {
+    font-size: 12px;
+  }
+  .results-table {
+    font-size: 14px;
+    min-width: 460px;
+  }
+  .results-table td,
+  .results-table th {
+    padding: 11px 12px;
+  }
+}
