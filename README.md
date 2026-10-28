@@ -57,3 +57,9 @@ code: "https://github.com/你的用户名/仓库"
 上传本目录内容至仓库根目录。Settings → Pages → Deploy from a branch → main → / (root) → Save。
 
 目前仓库为 pengxiang-lu/pengxiang-lu，启用后网站地址为 https://pengxiang-lu.github.io/pengxiang-lu/ 。相对链接同时兼容该子路径和独立用户主页根路径。
+
+## 中英文切换
+
+所有页面右上角均有 EN / 中文 按钮，选择保存在浏览器中，跨页面生效。双语文案集中在 `assets/i18n.js`，新增中文内容后在 EN_TEXT 中加入对应翻译。简历 PDF 保持原文件，英文界面明确标为 Chinese PDF。
+
+视觉主题采用蓝色，可切换深浅模式；主色与背景变量位于 assets/style.css。
