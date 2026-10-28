@@ -30,7 +30,7 @@ if ($("#paper-links")) {
   resource($("#paper-links"), "Paper", SITE_CONTENT.paper.url);
   const overview = document.createElement("a");
   overview.textContent = "Overview ↗";
-  overview.href = new URL("project/vigiclaw/", SITE_ROOT).href;
+  overview.href = new URL("project/vigiclaw/index.html", SITE_ROOT).href;
   $("#paper-links").append(overview);
 }
 const diagrams = {
@@ -81,7 +81,7 @@ function renderProjects(order = "featured") {
     btn.className = "project-open";
     btn.innerHTML = "<span>查看项目详情</span><span>↗</span>";
     btn.setAttribute("aria-label", "查看 " + p.name + " 项目详情");
-    btn.href = new URL("project/" + p.id + "/", SITE_ROOT).href;
+    btn.href = new URL("project/" + p.id + "/index.html", SITE_ROOT).href;
     article.append(btn);
     grid.append(article);
   }
@@ -127,7 +127,7 @@ function renderProjectPage() {
   const related = $("#related-projects");
   for (const other of SITE_CONTENT.projects.filter((v) => v.id !== p.id)) {
     const a = document.createElement("a");
-    a.href = new URL("project/" + other.id + "/", SITE_ROOT).href;
+    a.href = new URL("project/" + other.id + "/index.html", SITE_ROOT).href;
     a.textContent = other.name + " →";
     related.append(a);
   }
