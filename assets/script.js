@@ -1,22 +1,158 @@
-const $ = s => document.querySelector(s);
-const SITE_ROOT = new URL('../', document.currentScript.src);
-const safeUrl = value => { if (!value) return ''; try { const u = new URL(value, SITE_ROOT); return ['http:', 'https:', 'file:'].includes(u.protocol) ? u.href : ''; } catch { return ''; } };
-function link(text, url) { const a = document.createElement('a'); a.textContent = text; a.href = safeUrl(url); a.target = '_blank'; a.rel = 'noopener noreferrer'; return a; }
-function resource(parent, text, url) { if(safeUrl(url)) parent.append(link(text + ' ↗',url)); else { const s=document.createElement('span');s.className='pending';s.textContent=text+' · 待补充';parent.append(s); } }
-if ($('#paper-links')) { resource($('#paper-links'),'Paper',SITE_CONTENT.paper.url);resource($('#paper-links'),'Code',SITE_CONTENT.paper.code); }
-const diagrams = {
-robot: `<svg viewBox="0 0 320 170" aria-hidden="true"><g fill="none" stroke="#79b0ff" stroke-width="1" opacity=".15"><path d="M0 130H320M0 100H320M0 70H320M40 0V170M100 0V170M160 0V170M220 0V170M280 0V170"/></g><g fill="none" stroke="#abcfff" stroke-linecap="round" stroke-linejoin="round"><path d="M101 143h113M155 139v-28l-37-33 43-40 44 25" stroke-width="12"/><path d="m205 63 20-4m-20 4 4 20" stroke-width="5"/><circle cx="155" cy="111" r="9" fill="#27466c" stroke-width="3"/><circle cx="118" cy="78" r="9" fill="#27466c" stroke-width="3"/><circle cx="161" cy="38" r="8" fill="#27466c" stroke-width="3"/><rect x="231" y="115" width="26" height="26" rx="3" stroke-dasharray="4 4"/><path d="m234 99 8 6 16-20" stroke="#79b0ff" stroke-width="3"/></g><text x="20" y="24" fill="#8faed6" font-size="8" letter-spacing="2">ACTION → VERIFY</text></svg>`,
-memory: `<svg viewBox="0 0 320 170" aria-hidden="true"><g fill="none" stroke="#87aadb"><rect x="32" y="50" width="75" height="75" rx="8" opacity=".3"/><rect x="53" y="41" width="75" height="75" rx="8" opacity=".6"/><rect x="74" y="32" width="75" height="75" rx="8" fill="#29466f"/><path d="m90 88 18-25 13 12 14-21" stroke-width="2"/><path d="M164 72h34m-7-6 7 6-7 6"/><rect x="215" y="43" width="71" height="59" rx="10" fill="#294265"/><path d="M235 59v27m8-27v27m8-27v27m8-27v27m8-27v27" opacity=".6"/><path d="M249 112v23H109v-16" stroke-dasharray="4 4"/></g><text x="19" y="155" fill="#8fb2e1" font-size="8" letter-spacing="2">HISTORY → MEMORY → ACTION</text></svg>`,
-car: `<svg viewBox="0 0 320 170" aria-hidden="true"><path d="M-20 130C60 130 53 38 142 42S217 144 345 89" fill="none" stroke="#93aed8" stroke-width="33" opacity=".16"/><path d="M-20 130C60 130 53 38 142 42S217 144 345 89" fill="none" stroke="#93aed8" stroke-dasharray="7 9"/><g transform="translate(156 48) rotate(31)"><rect x="-27" y="-15" width="11" height="24" rx="3" fill="#a5c3ed"/><rect x="16" y="-15" width="11" height="24" rx="3" fill="#a5c3ed"/><rect x="-17" y="-29" width="34" height="59" rx="6" fill="#315686" stroke="#a5c3ed"/><rect x="-10" y="-15" width="20" height="23" rx="3" fill="#b2d0ff"/><circle cy="-22" r="3" fill="#80b8ff"/><path d="M0-34v-14m-6 3 6-5 6 5" stroke="#a5c3ed" fill="none"/></g><text x="19" y="155" fill="#a7c5f4" font-size="8" letter-spacing="2">SENSE · CONTROL · RACE</text></svg>`};
-function renderProjects(order='featured') { const grid=$('#project-grid');grid.replaceChildren();const projects=[...SITE_CONTENT.projects];if(order==='recent') projects.sort((a,b)=>b.date.localeCompare(a.date));for(const p of projects){ const article=document.createElement('article');article.className='project';const art=document.createElement('div');art.className='project-art';if(safeUrl(p.image)){const img=document.createElement('img');img.src=safeUrl(p.image);img.alt=p.name+' 项目封面';art.append(img);}else art.innerHTML=diagrams[p.kind];article.append(art);const body=document.createElement('div');body.className='project-body';const text=(tag,cls,value)=>{const e=document.createElement(tag);e.className=cls;e.textContent=value;body.append(e);};text('div','meta',p.role+' / '+p.period);text('h3','',p.name);text('p','subtitle',p.subtitle);text('p','description',p.description);const tags=document.createElement('div');tags.className='tags';for(const t of p.tags){const s=document.createElement('span');s.textContent=t;tags.append(s);}body.append(tags);article.append(body);const btn=document.createElement('a');btn.className='project-open';btn.innerHTML='<span>查看项目详情</span><span>↗</span>';btn.setAttribute('aria-label','查看 '+p.name+' 项目详情');btn.href=new URL('project/'+p.id+'/',SITE_ROOT).href;article.append(btn);grid.append(article);}}
-function renderProjectPage() {
- const root=$('#project-detail');if(!root)return;
- const p=SITE_CONTENT.projects.find(p=>p.id===root.dataset.project);if(!p)return;
- const art=$('#detail-art');if(safeUrl(p.image)){const img=document.createElement('img');img.src=safeUrl(p.image);img.alt=p.name+' 项目封面';art.append(img);}else art.innerHTML=diagrams[p.kind];
- const list=$('#detail-list');for(const t of p.details){const li=document.createElement('li');li.textContent=t;list.append(li);}
- const links=$('#detail-links');resource(links,'Paper',p.paper||(p.id==='vigiclaw'?SITE_CONTENT.paper.url:''));resource(links,'Code',p.code||(p.id==='vigiclaw'?SITE_CONTENT.paper.code:''));
- const media=$('#detail-media');if(safeUrl(p.video)){if(/\.(mp4|webm|ogg)([?#].*)?$/i.test(p.video)){const video=document.createElement('video');video.controls=true;video.preload='metadata';video.src=safeUrl(p.video);video.setAttribute('aria-label',p.name+' 项目演示视频');media.append(video);}else media.append(link('观看项目视频 ↗',p.video));}else{const note=document.createElement('p');note.className='media-note';note.textContent='项目演示视频 · 待补充';media.append(note);}
- const related=$('#related-projects');for(const other of SITE_CONTENT.projects.filter(v=>v.id!==p.id)){const a=document.createElement('a');a.href=new URL('project/'+other.id+'/',SITE_ROOT).href;a.textContent=other.name+' →';related.append(a);}
+const $ = (s) => document.querySelector(s);
+const SITE_ROOT = new URL("../", document.currentScript.src);
+const safeUrl = (value) => {
+  if (!value) return "";
+  try {
+    const u = new URL(value, SITE_ROOT);
+    return ["http:", "https:", "file:"].includes(u.protocol) ? u.href : "";
+  } catch {
+    return "";
+  }
+};
+function link(text, url) {
+  const a = document.createElement("a");
+  a.textContent = text;
+  a.href = safeUrl(url);
+  a.target = "_blank";
+  a.rel = "noopener noreferrer";
+  return a;
 }
-document.querySelectorAll('[data-sort]').forEach(btn=>btn.onclick=()=>{document.querySelectorAll('[data-sort]').forEach(b=>{b.classList.toggle('active',b===btn);b.setAttribute('aria-pressed',b===btn?'true':'false');});renderProjects(btn.dataset.sort);});
-let preference;try{preference=localStorage.getItem('theme');}catch{}function setTheme(light){document.body.classList.toggle('light',light);$('#theme').textContent=light?'☾':'☼';$('#theme').setAttribute('aria-label',light?'切换深色主题':'切换浅色主题');}setTheme(preference==='light');$('#theme').onclick=()=>{const light=!document.body.classList.contains('light');setTheme(light);try{localStorage.setItem('theme',light?'light':'dark');}catch{}};if($('#project-grid'))renderProjects();renderProjectPage();
+function resource(parent, text, url) {
+  if (safeUrl(url)) parent.append(link(text + " ↗", url));
+  else {
+    const s = document.createElement("span");
+    s.className = "pending";
+    s.textContent = text + " · 待补充";
+    parent.append(s);
+  }
+}
+if ($("#paper-links")) {
+  resource($("#paper-links"), "Paper", SITE_CONTENT.paper.url);
+  resource($("#paper-links"), "Code", SITE_CONTENT.paper.code);
+}
+const diagrams = {
+  robot: `<svg viewBox="0 0 320 170" aria-hidden="true"><g fill="none" stroke="#79b0ff" stroke-width="1" opacity=".15"><path d="M0 130H320M0 100H320M0 70H320M40 0V170M100 0V170M160 0V170M220 0V170M280 0V170"/></g><g fill="none" stroke="#abcfff" stroke-linecap="round" stroke-linejoin="round"><path d="M101 143h113M155 139v-28l-37-33 43-40 44 25" stroke-width="12"/><path d="m205 63 20-4m-20 4 4 20" stroke-width="5"/><circle cx="155" cy="111" r="9" fill="#27466c" stroke-width="3"/><circle cx="118" cy="78" r="9" fill="#27466c" stroke-width="3"/><circle cx="161" cy="38" r="8" fill="#27466c" stroke-width="3"/><rect x="231" y="115" width="26" height="26" rx="3" stroke-dasharray="4 4"/><path d="m234 99 8 6 16-20" stroke="#79b0ff" stroke-width="3"/></g><text x="20" y="24" fill="#8faed6" font-size="8" letter-spacing="2">ACTION → VERIFY</text></svg>`,
+  memory: `<svg viewBox="0 0 320 170" aria-hidden="true"><g fill="none" stroke="#87aadb"><rect x="32" y="50" width="75" height="75" rx="8" opacity=".3"/><rect x="53" y="41" width="75" height="75" rx="8" opacity=".6"/><rect x="74" y="32" width="75" height="75" rx="8" fill="#29466f"/><path d="m90 88 18-25 13 12 14-21" stroke-width="2"/><path d="M164 72h34m-7-6 7 6-7 6"/><rect x="215" y="43" width="71" height="59" rx="10" fill="#294265"/><path d="M235 59v27m8-27v27m8-27v27m8-27v27m8-27v27" opacity=".6"/><path d="M249 112v23H109v-16" stroke-dasharray="4 4"/></g><text x="19" y="155" fill="#8fb2e1" font-size="8" letter-spacing="2">HISTORY → MEMORY → ACTION</text></svg>`,
+  car: `<svg viewBox="0 0 320 170" aria-hidden="true"><path d="M-20 130C60 130 53 38 142 42S217 144 345 89" fill="none" stroke="#93aed8" stroke-width="33" opacity=".16"/><path d="M-20 130C60 130 53 38 142 42S217 144 345 89" fill="none" stroke="#93aed8" stroke-dasharray="7 9"/><g transform="translate(156 48) rotate(31)"><rect x="-27" y="-15" width="11" height="24" rx="3" fill="#a5c3ed"/><rect x="16" y="-15" width="11" height="24" rx="3" fill="#a5c3ed"/><rect x="-17" y="-29" width="34" height="59" rx="6" fill="#315686" stroke="#a5c3ed"/><rect x="-10" y="-15" width="20" height="23" rx="3" fill="#b2d0ff"/><circle cy="-22" r="3" fill="#80b8ff"/><path d="M0-34v-14m-6 3 6-5 6 5" stroke="#a5c3ed" fill="none"/></g><text x="19" y="155" fill="#a7c5f4" font-size="8" letter-spacing="2">SENSE · CONTROL · RACE</text></svg>`,
+};
+function renderProjects(order = "featured") {
+  const grid = $("#project-grid");
+  grid.replaceChildren();
+  const projects = [...SITE_CONTENT.projects];
+  if (order === "recent") projects.sort((a, b) => b.date.localeCompare(a.date));
+  for (const p of projects) {
+    const article = document.createElement("article");
+    article.className = "project";
+    const art = document.createElement("div");
+    art.className = "project-art";
+    if (safeUrl(p.image)) {
+      const img = document.createElement("img");
+      img.src = safeUrl(p.image);
+      img.alt = p.name + " 项目封面";
+      art.append(img);
+    } else art.innerHTML = diagrams[p.kind];
+    article.append(art);
+    const body = document.createElement("div");
+    body.className = "project-body";
+    const text = (tag, cls, value) => {
+      const e = document.createElement(tag);
+      e.className = cls;
+      e.textContent = value;
+      body.append(e);
+    };
+    text("div", "meta", p.role + " / " + p.period);
+    text("h3", "", p.name);
+    text("p", "subtitle", p.subtitle);
+    text("p", "description", p.description);
+    const tags = document.createElement("div");
+    tags.className = "tags";
+    for (const t of p.tags) {
+      const s = document.createElement("span");
+      s.textContent = t;
+      tags.append(s);
+    }
+    body.append(tags);
+    article.append(body);
+    const btn = document.createElement("a");
+    btn.className = "project-open";
+    btn.innerHTML = "<span>查看项目详情</span><span>↗</span>";
+    btn.setAttribute("aria-label", "查看 " + p.name + " 项目详情");
+    btn.href = new URL("project/" + p.id + "/", SITE_ROOT).href;
+    article.append(btn);
+    grid.append(article);
+  }
+}
+function renderProjectPage() {
+  const root = $("#project-detail");
+  if (!root) return;
+  const p = SITE_CONTENT.projects.find((p) => p.id === root.dataset.project);
+  if (!p) return;
+  const art = $("#detail-art");
+  if (safeUrl(p.image)) {
+    const img = document.createElement("img");
+    img.src = safeUrl(p.image);
+    img.alt = p.name + " 项目封面";
+    art.append(img);
+  } else art.innerHTML = diagrams[p.kind];
+  const list = $("#detail-list");
+  for (const t of p.details) {
+    const li = document.createElement("li");
+    li.textContent = t;
+    list.append(li);
+  }
+  const links = $("#detail-links");
+  resource(links, "Paper", p.paper || (p.id === "vigiclaw" ? SITE_CONTENT.paper.url : ""));
+  resource(links, "Code", p.code || (p.id === "vigiclaw" ? SITE_CONTENT.paper.code : ""));
+  const media = $("#detail-media");
+  if (safeUrl(p.video)) {
+    if (/\.(mp4|webm|ogg)([?#].*)?$/i.test(p.video)) {
+      const video = document.createElement("video");
+      video.controls = true;
+      video.preload = "metadata";
+      video.src = safeUrl(p.video);
+      video.setAttribute("aria-label", p.name + " 项目演示视频");
+      media.append(video);
+    } else media.append(link("观看项目视频 ↗", p.video));
+  } else {
+    const note = document.createElement("p");
+    note.className = "media-note";
+    note.textContent = "项目演示视频 · 待补充";
+    media.append(note);
+  }
+  const related = $("#related-projects");
+  for (const other of SITE_CONTENT.projects.filter((v) => v.id !== p.id)) {
+    const a = document.createElement("a");
+    a.href = new URL("project/" + other.id + "/", SITE_ROOT).href;
+    a.textContent = other.name + " →";
+    related.append(a);
+  }
+}
+document.querySelectorAll("[data-sort]").forEach(
+  (btn) =>
+    (btn.onclick = () => {
+      document.querySelectorAll("[data-sort]").forEach((b) => {
+        b.classList.toggle("active", b === btn);
+        b.setAttribute("aria-pressed", b === btn ? "true" : "false");
+      });
+      renderProjects(btn.dataset.sort);
+    }),
+);
+let preference;
+try {
+  preference = localStorage.getItem("theme");
+} catch {}
+function setTheme(light) {
+  document.body.classList.toggle("light", light);
+  $("#theme").textContent = light ? "☾" : "☼";
+  $("#theme").setAttribute("aria-label", light ? "切换深色主题" : "切换浅色主题");
+}
+setTheme(preference === "light");
+$("#theme").onclick = () => {
+  const light = !document.body.classList.contains("light");
+  setTheme(light);
+  try {
+    localStorage.setItem("theme", light ? "light" : "dark");
+  } catch {}
+};
+if ($("#project-grid")) renderProjects();
+renderProjectPage();
