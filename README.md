@@ -13,7 +13,7 @@ pengxiang-homepage/
 │   ├── vigiclaw/
 │   │   ├── index.html         # VigiClaw 项目详情
 │   │   └── attachments/       # 论文、图片、视频等项目附件
-│   ├── vla-memory/
+│   ├── double-foc/
 │   │   ├── index.html
 │   │   └── attachments/
 │   └── smart-car/
@@ -63,3 +63,5 @@ code: "https://github.com/你的用户名/仓库"
 所有页面右上角均有 EN / 中文 按钮，选择保存在浏览器中，跨页面生效。双语文案集中在 `assets/i18n.js`，新增中文内容后在 EN_TEXT 中加入对应翻译。简历 PDF 保持原文件，英文界面明确标为 Chinese PDF。
 
 视觉主题采用蓝色，可切换深浅模式；主色与背景变量位于 assets/style.css。
+
+项目列表中的 Memory for VLA 已替换为 CH32V203 DOUBLE-FOC。内容来源：https://github.com/pengxiang-lu/ch32v203-double-foc 。旧 vla-memory 地址保留跳转。

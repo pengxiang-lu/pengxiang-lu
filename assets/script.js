@@ -34,6 +34,7 @@ if ($("#paper-links")) {
   $("#paper-links").append(overview);
 }
 const diagrams = {
+  foc: '<svg viewBox="0 0 320 170" aria-hidden="true"><g fill="none" stroke="#79b0ff" stroke-width="1.5"><rect x="112" y="48" width="96" height="68" rx="10" fill="#20304c"/><path d="M112 70H70V49H47M112 94H70v27H47M208 70h42V49h23M208 94h42v27h23"/><circle cx="36" cy="49" r="16"/><circle cx="284" cy="49" r="16"/><path d="M36 33v32m248-32v32M20 49h32m216 0h32" opacity=".5"/><rect x="17" y="110" width="42" height="22" rx="4"/><rect x="261" y="110" width="42" height="22" rx="4"/><path d="M124 42v-9m16 9v-9m16 9v-9m16 9v-9m16 9v-9m16 9v-9M124 122v9m16-9v9m16-9v9m16-9v9m16-9v9m16-9v9"/></g><g fill="#bfdaff" text-anchor="middle" font-family="sans-serif"><text x="160" y="79" font-size="13">CH32V203</text><text x="160" y="99" font-size="10">DOUBLE-FOC</text><text x="38" y="125" font-size="8">MT6701</text><text x="282" y="125" font-size="8">MT6701</text><text x="160" y="155" font-size="8" letter-spacing="1.5">DUAL MOTOR \u00b7 CLOSED-LOOP CONTROL</text></g></svg>',
   robot: `<svg viewBox="0 0 320 170" aria-hidden="true"><g fill="none" stroke="#79b0ff" stroke-width="1" opacity=".15"><path d="M0 130H320M0 100H320M0 70H320M40 0V170M100 0V170M160 0V170M220 0V170M280 0V170"/></g><g fill="none" stroke="#abcfff" stroke-linecap="round" stroke-linejoin="round"><path d="M101 143h113M155 139v-28l-37-33 43-40 44 25" stroke-width="12"/><path d="m205 63 20-4m-20 4 4 20" stroke-width="5"/><circle cx="155" cy="111" r="9" fill="#27466c" stroke-width="3"/><circle cx="118" cy="78" r="9" fill="#27466c" stroke-width="3"/><circle cx="161" cy="38" r="8" fill="#27466c" stroke-width="3"/><rect x="231" y="115" width="26" height="26" rx="3" stroke-dasharray="4 4"/><path d="m234 99 8 6 16-20" stroke="#79b0ff" stroke-width="3"/></g><text x="20" y="24" fill="#8faed6" font-size="8" letter-spacing="2">ACTION → VERIFY</text></svg>`,
   memory: `<svg viewBox="0 0 320 170" aria-hidden="true"><g fill="none" stroke="#87aadb"><rect x="32" y="50" width="75" height="75" rx="8" opacity=".3"/><rect x="53" y="41" width="75" height="75" rx="8" opacity=".6"/><rect x="74" y="32" width="75" height="75" rx="8" fill="#29466f"/><path d="m90 88 18-25 13 12 14-21" stroke-width="2"/><path d="M164 72h34m-7-6 7 6-7 6"/><rect x="215" y="43" width="71" height="59" rx="10" fill="#294265"/><path d="M235 59v27m8-27v27m8-27v27m8-27v27m8-27v27" opacity=".6"/><path d="M249 112v23H109v-16" stroke-dasharray="4 4"/></g><text x="19" y="155" fill="#8fb2e1" font-size="8" letter-spacing="2">HISTORY → MEMORY → ACTION</text></svg>`,
   car: `<svg viewBox="0 0 320 170" aria-hidden="true"><path d="M-20 130C60 130 53 38 142 42S217 144 345 89" fill="none" stroke="#93aed8" stroke-width="33" opacity=".16"/><path d="M-20 130C60 130 53 38 142 42S217 144 345 89" fill="none" stroke="#93aed8" stroke-dasharray="7 9"/><g transform="translate(156 48) rotate(31)"><rect x="-27" y="-15" width="11" height="24" rx="3" fill="#a5c3ed"/><rect x="16" y="-15" width="11" height="24" rx="3" fill="#a5c3ed"/><rect x="-17" y="-29" width="34" height="59" rx="6" fill="#315686" stroke="#a5c3ed"/><rect x="-10" y="-15" width="20" height="23" rx="3" fill="#b2d0ff"/><circle cy="-22" r="3" fill="#80b8ff"/><path d="M0-34v-14m-6 3 6-5 6 5" stroke="#a5c3ed" fill="none"/></g><text x="19" y="155" fill="#a7c5f4" font-size="8" letter-spacing="2">SENSE · CONTROL · RACE</text></svg>`,
@@ -121,7 +122,8 @@ function renderProjectPage() {
     list.append(li);
   }
   const links = $("#detail-links");
-  resource(links, "Paper", p.paper || (p.id === "vigiclaw" ? SITE_CONTENT.paper.url : ""));
+  if (!p.noPaper)
+    resource(links, "Paper", p.paper || (p.id === "vigiclaw" ? SITE_CONTENT.paper.url : ""));
   resource(links, "Code", p.code || (p.id === "vigiclaw" ? SITE_CONTENT.paper.code : ""));
   const media = $("#detail-media");
   if (safeUrl(p.video)) {
@@ -133,6 +135,8 @@ function renderProjectPage() {
       video.setAttribute("aria-label", p.name + " 项目演示视频");
       media.append(video);
     } else media.append(link("观看项目视频 ↗", p.video));
+  } else if (p.id === "double-foc") {
+    media.closest("section").hidden = true;
   } else {
     const note = document.createElement("p");
     note.className = "media-note";

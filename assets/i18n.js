@@ -1,5 +1,23 @@
 // 双语文案。保留原始文本节点，让重复切换及动态项目排序可逆。
 const EN_TEXT = {
+  "功能与实现": "Features and implementation",
+  "双路磁编码器 FOC 电机驱动": "Dual-motor FOC drive with magnetic encoder feedback",
+  "基于 CH32V203 的双路有感 FOC 驱动，集成磁编码器反馈、电流采样和多种闭环控制模式，提供硬件 PCB 与嵌入式固件。":
+    "A CH32V203-based dual-motor FOC drive integrating magnetic encoder feedback, current sensing and multiple closed-loop control modes, with PCB designs and embedded firmware.",
+  开源项目: "Open-source project",
+  硬件设计与嵌入式固件: "Hardware design and embedded firmware",
+  "以 CH32V203 为主控，使用 MT6701 磁编码器反馈，支持左右两路电机独立使能。":
+    "Uses a CH32V203 controller and MT6701 magnetic encoders, with independently enabled left and right motor channels.",
+  "固件提供速度、角度、电流及其组合闭环控制，支持 SPWM、七段式 SVPWM 和五段式 SVPWM。":
+    "The firmware implements speed, position, current and cascaded control modes, with SPWM, seven-segment SVPWM and five-segment SVPWM modulation.",
+  "硬件采用 EG2133 栅极驱动与双 N 沟道 MOS 器件，仓库提供原理图、PCB 和编码器板资料。":
+    "The hardware uses EG2133 gate drivers and dual N-channel MOSFET packages; schematics, PCB files and encoder-board documentation are included in the repository.",
+  "通过 460800 baud 的 USART 接收双电机目标值，支持数据回传，可配合 Vofa+ 观察控制状态。":
+    "Accepts dual-motor targets over USART at 460800 baud and streams telemetry for inspection with tools such as Vofa+.",
+  "支持电池电压检测、欠压保护、堵转保护和磁编码器错误保护。":
+    "Includes battery voltage monitoring, undervoltage protection, stall protection and magnetic encoder error protection.",
+  "当前调试状态：仓库记录左路运行正常；右路在较高占空比下可能导致控制器复位或卡死，硬件仍待优化。各控制模式的板上验证状态以仓库说明为准。":
+    "Current status: the repository reports normal operation on the left channel. The right channel may reset or hang the controller at higher duty cycles, and the hardware requires further refinement. Refer to the repository for board-level validation status of each control mode.",
   项目封面视频: " project cover video",
   机械臂配置: "Robot Arm Configuration",
   "真机平台采用自主搭建的三轴 SCARA 机械臂。以下配置依据机械臂开源仓库的系统说明与固件参数整理。":

@@ -1,6 +1,9 @@
-// 在这里添加论文、项目代码、封面与视频路径。空字符串会显示“待补充”，不会生成失效链接。
+// 项目内容与媒体路径。空路径显示待补充；date 留空表示未填写项目日期。
 const SITE_CONTENT = {
-  paper: { url: "project/vigiclaw/attachments/vigiclaw-paper.pdf", code: "" },
+  paper: {
+    url: "project/vigiclaw/attachments/vigiclaw-paper.pdf",
+    code: "",
+  },
   projects: [
     {
       id: "vigiclaw",
@@ -25,23 +28,27 @@ const SITE_CONTENT = {
       image: "assets/vigiclaw-drawer.gif",
     },
     {
-      id: "vla-memory",
-      name: "Memory for VLA",
-      subtitle: "历史事件驱动的机器人记忆评测",
-      date: "2026-07",
-      period: "2026.01 – 2026.07",
-      role: "项目成员",
-      kind: "memory",
-      tags: ["VLA", "双臂操作", "Benchmark"],
+      id: "double-foc",
+      name: "CH32V203 DOUBLE-FOC",
+      subtitle: "双路磁编码器 FOC 电机驱动",
+      date: "",
+      period: "硬件设计与嵌入式固件",
+      role: "开源项目",
+      kind: "foc",
+      tags: ["CH32V203", "FOC", "MT6701", "PCB"],
       description:
-        "面向长时序双臂操作，研究模型如何利用历史交互信息，参与构建历史事件驱动的数据与评测流程。",
+        "基于 CH32V203 的双路有感 FOC 驱动，集成磁编码器反馈、电流采样和多种闭环控制模式，提供硬件 PCB 与嵌入式固件。",
       details: [
-        "针对 VLA 模型在长时序机器人操作中难以利用历史信息的问题，参与记忆能力研究。",
-        "负责仿真框架调研选型、仿真数据采集与仿真实验。",
-        "参与构建机器人历史事件理解评测流程；论文初稿投稿至 ICRA。",
+        "以 CH32V203 为主控，使用 MT6701 磁编码器反馈，支持左右两路电机独立使能。",
+        "固件提供速度、角度、电流及其组合闭环控制，支持 SPWM、七段式 SVPWM 和五段式 SVPWM。",
+        "硬件采用 EG2133 栅极驱动与双 N 沟道 MOS 器件，仓库提供原理图、PCB 和编码器板资料。",
+        "通过 460800 baud 的 USART 接收双电机目标值，支持数据回传，可配合 Vofa+ 观察控制状态。",
+        "支持电池电压检测、欠压保护、堵转保护和磁编码器错误保护。",
+        "当前调试状态：仓库记录左路运行正常；右路在较高占空比下可能导致控制器复位或卡死，硬件仍待优化。各控制模式的板上验证状态以仓库说明为准。",
       ],
       paper: "",
-      code: "",
+      noPaper: true,
+      code: "https://github.com/pengxiang-lu/ch32v203-double-foc",
       video: "",
       image: "",
     },
