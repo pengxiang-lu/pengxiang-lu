@@ -1396,3 +1396,16 @@ html[lang="en"] .award-list h3 {
   height: 100%;
   object-fit: contain;
 }
+
+.arm-photo {
+  max-width: 520px;
+  margin: 24px auto 30px;
+}
+.arm-photo img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+.arm-photo figcaption {
+  text-align: center;
+}

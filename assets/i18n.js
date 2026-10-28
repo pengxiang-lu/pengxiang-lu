@@ -1,6 +1,9 @@
 // 双语文案。保留原始文本节点，让重复切换及动态项目排序可逆。
 const EN_TEXT = {
-  "功能与实现": "Features and implementation",
+  "自制三轴 SCARA 机械臂实物照片": "Photograph of the custom three-axis SCARA robot arm",
+  "真机平台：自制三轴 SCARA 机械臂，末端采用气泵吸取工具。":
+    "Real-robot platform: a custom three-axis SCARA arm with a pneumatic suction end effector.",
+  功能与实现: "Features and implementation",
   "双路磁编码器 FOC 电机驱动": "Dual-motor FOC drive with magnetic encoder feedback",
   "基于 CH32V203 的双路有感 FOC 驱动，集成磁编码器反馈、电流采样和多种闭环控制模式，提供硬件 PCB 与嵌入式固件。":
     "A CH32V203-based dual-motor FOC drive integrating magnetic encoder feedback, current sensing and multiple closed-loop control modes, with PCB designs and embedded firmware.",
