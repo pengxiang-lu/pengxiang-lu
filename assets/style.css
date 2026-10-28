@@ -1459,15 +1459,15 @@ html[lang="en"] .award-list h3 {
 
 .school-row {
   display: grid;
-  grid-template-columns: 100px minmax(0, 1fr);
+  grid-template-columns: 148px minmax(0, 1fr);
   gap: 24px;
   align-items: center;
   padding: 24px 0;
   border-bottom: 1px solid var(--line);
 }
 .school-logo {
-  width: 94px;
-  height: 94px;
+  width: 140px;
+  height: 140px;
   padding: 8px;
   border-radius: 14px;
   background: #fff;
@@ -1528,13 +1528,13 @@ html[lang="en"] .award-list h3 {
 }
 @media (max-width: 580px) {
   .school-row {
-    grid-template-columns: 64px minmax(0, 1fr);
+    grid-template-columns: 88px minmax(0, 1fr);
     gap: 15px;
     align-items: start;
   }
   .school-logo {
-    width: 64px;
-    height: 64px;
+    width: 88px;
+    height: 88px;
     padding: 6px;
     border-radius: 10px;
   }
